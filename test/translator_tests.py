@@ -1,13 +1,26 @@
 """
 Unit tests for the in translate function in the translator module
+
+To activate pytest on Pycharm follow these steps:
+> go to Pycharm Settings
+> Expand Tools
+> Click Python Integrated Tools
+> Under Testing section: Default test runner, select pytest
+> Click Fix to install the module if prompted
+
+@author: Susan Fox
+@author: Amin G. Alhashim (aalhashi@macalester.edu)
 """
+import os
 from src.bd_manager import get_braille_dictionary
 from src.translator import translate
+from src.translator import translate_document
+from src.helper_funs import get_braille_file_name
 
 bd = get_braille_dictionary()
 
 
-def test_hi():
+def test_translate_hi():
     sentence = "Hi!"
     expected = [[1, 1, 0, 0, 1, 0], [0, 1, 0, 1, 0, 0]]
 
@@ -15,7 +28,7 @@ def test_hi():
     assert actual == expected
 
 
-def test_fox():
+def test_translate_fox():
     sentence = "the quick brown fox jumps over the lazy dog"
     expected = [[0, 1, 1, 1, 1, 0], [1, 1, 0, 0, 1, 0], [1, 0, 0, 0, 1, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -39,7 +52,7 @@ def test_fox():
     assert actual == expected
 
 
-def test_do():
+def test_translate_do():
     sentence = "do it as you will"
     expected = [[1, 0, 0, 1, 1, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -55,7 +68,7 @@ def test_do():
     assert actual == expected
 
 
-def test_planet():
+def test_translate_planet():
     sentence = "from every corner of the planet, people go and seek more knowledge"
     expected = [[1, 1, 0, 1, 0, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -87,7 +100,7 @@ def test_planet():
     assert actual == expected
 
 
-def test_more():
+def test_translate_more():
     sentence = "It's possible we can do more with just very little."
     expected = [[0, 1, 0, 1, 0, 0], [0, 1, 1, 1, 1, 0], [0, 1, 1, 1, 0, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -115,7 +128,7 @@ def test_more():
     assert actual == expected
 
 
-def test_conundrum():
+def test_translate_conundrum():
     sentence = "I have quite the conundrum that may come back to bite us."
     expected = [[0, 1, 0, 1, 0, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -146,7 +159,7 @@ def test_conundrum():
     assert actual == expected
 
 
-def test_racoons():
+def test_translate_racoons():
     sentence = "We have to do this so that racoons don't come back again."
     expected = [[0, 1, 0, 1, 1, 1], [1, 0, 0, 0, 1, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -177,7 +190,7 @@ def test_racoons():
     assert actual == expected
 
 
-def test_start():
+def test_translate_start():
     sentence = "But rather then start over, why not be more like her and never give up?"
     expected = [[1, 1, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0],
@@ -213,7 +226,7 @@ def test_start():
     assert actual == expected
 
 
-def test_much():
+def test_translate_much():
     sentence = "How much is too much?"
     expected = [[1, 1, 0, 0, 1, 0], [1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 1, 1],
                 [0, 0, 0, 0, 0, 0],
@@ -227,3 +240,17 @@ def test_much():
 
     actual = translate(sentence, bd)
     assert actual == expected
+
+
+def test_translate_document_sample():
+    file_name = "../res/sample.txt"
+    translate_document(bd, file_name)
+
+    result_file_name = get_braille_file_name(file_name)
+    assert os.path.exists(result_file_name)
+    test_file = open(result_file_name, 'r')
+    doc = test_file.read()
+    assert len(doc) == 1923
+    assert doc.count("\n") == 3
+    assert doc.find("\n") == 640
+    assert (doc[0], doc[100], doc[1001]) == ('1', '1', '0')

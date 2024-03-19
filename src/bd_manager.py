@@ -63,16 +63,15 @@ def add_letters(bd):
 
 def add_braille2_words(bd):
     """
-    Add Braille 2 words to the passed dictionary
+    Add the Braille representation for grade 2 words to the passed dictionary
     """
     assert type(bd) is dict
-
-#     TODO: add your code below then remove this line
+    # TODO: add your code below then remove this line
 
 
 def get_braille_dictionary():
     """
-    Creates and returns the Braille 2 dictionary
+    Creates and returns the grade 2 Braille dictionary
     """
     bd = {}
     bd[" "] = [0, 0, 0, 0, 0, 0]    # Braille representation for space

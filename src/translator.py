@@ -1,5 +1,5 @@
 """
-The script is responsible for translating English sentences to Braille representation
+The script contain function to help translating English sentences to Braille representation
 """
 
 from src.bd_manager import get_braille_dictionary
@@ -14,6 +14,11 @@ def translate(sentence, bd):
     assert type(bd) is dict
 
     # TODO: Write your implementation for the function below then remove this line
+
+
+def translate_document(bd, file_name):
+    # TODO: implement the function then remove this line
+    pass
 
 
 if __name__ == '__main__':

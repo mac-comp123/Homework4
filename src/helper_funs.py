@@ -1,8 +1,16 @@
 """
-The script contains a list of helper functions
+This script contains a list of helper functions
 """
 
 import turtle
+
+
+def get_braille_file_name(file_name: str):
+    """
+    Append the suffix "-braille" at the end of the file name and before the extension
+    """
+    dot_index = file_name.rfind(".")
+    return file_name[0:dot_index] + "-braille" + file_name[dot_index:]
 
 
 def print_braille(lst):
@@ -65,11 +73,6 @@ def draw_braille_character(trt, bc):
 
 
 def write_braille(lst, file_name):
-    # TODO: implement the function then remove this line
-    pass
-
-
-def translate_document(bd, file_name):
     # TODO: implement the function then remove this line
     pass
 

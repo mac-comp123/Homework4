@@ -1,13 +1,21 @@
 """
 This script contains unit tests for the functions in the helper_funs module
+
+To activate pytest on Pycharm follow these steps:
+> go to Pycharm Settings
+> Expand Tools
+> Click Python Integrated Tools
+> Under Testing section: Default test runner, select pytest
+> Click Fix to install the module if prompted
+
+@author: Susan Fox
+@author: Amin G. Alhashim (aalhashi@macalester.edu)
 """
 import time
 import turtle
 import os
-from src.bd_manager import get_braille_dictionary
 from src.helper_funs import draw_word
 from src.helper_funs import write_braille
-from src.helper_funs import translate_document
 
 
 def getTurtle():
@@ -133,18 +141,3 @@ def test_write_braille_do():
     assert doc.count("\n") == 3
     assert doc.find("\n") == 36
     assert (doc[0], doc[50], doc[100]) == ('1', ' ', '1')
-
-
-def test_translate_document():
-    braille_dictionary = get_braille_dictionary()
-    file_name = "../res/sample.txt"
-    translate_document(braille_dictionary, file_name)
-
-    result_file_name = "braille-" + file_name
-    assert os.path.exists(result_file_name)
-    test_file = open(result_file_name, 'r')
-    doc = test_file.read()
-    assert len(doc) == 1923
-    assert doc.count("\n") == 3
-    assert doc.find("\n") == 640
-    assert (doc[0], doc[100], doc[1001]) == ('1', '1', '0')
