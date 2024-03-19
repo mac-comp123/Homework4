@@ -1,8 +1,8 @@
 """
 Unit tests for the in translate function in the translator module
 """
-from bd_manager import get_braille_dictionary
-from translator import translate
+from src.bd_manager import get_braille_dictionary
+from src.translator import translate
 
 bd = get_braille_dictionary()
 

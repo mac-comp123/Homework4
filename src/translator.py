@@ -2,8 +2,8 @@
 The script is responsible for translating English sentences to Braille representation
 """
 
-from bd_manager import get_braille_dictionary
-from helper_funs import print_braille
+from src.bd_manager import get_braille_dictionary
+from src.helper_funs import print_braille
 
 
 def translate(sentence, bd):

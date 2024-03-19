@@ -4,10 +4,10 @@ This script contains unit tests for the functions in the helper_funs module
 import time
 import turtle
 import os
-from bd_manager import get_braille_dictionary
-from helper_funs import draw_word
-from helper_funs import write_braille
-from helper_funs import translate_document
+from src.bd_manager import get_braille_dictionary
+from src.helper_funs import draw_word
+from src.helper_funs import write_braille
+from src.helper_funs import translate_document
 
 
 def getTurtle():
@@ -137,7 +137,7 @@ def test_write_braille_do():
 
 def test_translate_document():
     braille_dictionary = get_braille_dictionary()
-    file_name = "sample.txt"
+    file_name = "../res/sample.txt"
     translate_document(braille_dictionary, file_name)
 
     result_file_name = "braille-" + file_name
