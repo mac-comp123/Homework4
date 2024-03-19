@@ -5,7 +5,7 @@ This script contains a list of helper functions
 import turtle
 
 
-def get_braille_file_name(file_name: str):
+def create_braille_file_name(file_name: str):
     """
     Append the suffix "-braille" at the end of the file name and before the extension
     """

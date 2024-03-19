@@ -15,7 +15,7 @@ import os
 from src.bd_manager import get_braille_dictionary
 from src.translator import translate
 from src.translator import translate_document
-from src.helper_funs import get_braille_file_name
+from src.helper_funs import create_braille_file_name
 
 bd = get_braille_dictionary()
 
@@ -246,7 +246,7 @@ def test_translate_document_sample():
     file_name = "../res/sample.txt"
     translate_document(bd, file_name)
 
-    result_file_name = get_braille_file_name(file_name)
+    result_file_name = create_braille_file_name(file_name)
     assert os.path.exists(result_file_name)
     test_file = open(result_file_name, 'r')
     doc = test_file.read()
